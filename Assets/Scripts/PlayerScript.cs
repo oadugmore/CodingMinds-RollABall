@@ -15,12 +15,13 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called every physics update
+    void FixedUpdate()
     {
         float horizontalMove = Input.GetAxis("Horizontal");
         float verticalMove = Input.GetAxis("Vertical");
-        rb.AddForce(horizontalMove * speed, 0, verticalMove * speed);
+        Vector3 movement = new Vector3(horizontalMove, 0, verticalMove);
+        rb.AddForce(movement * speed);
     }
 
     private void OnTriggerEnter(Collider other)
